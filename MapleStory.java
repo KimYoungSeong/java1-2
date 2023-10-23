@@ -1,61 +1,174 @@
 package p1;
 
+import java.util.Random;
 import java.util.Scanner;
 
 public class MapleStory {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Unit u = new Unit(100,200,1);
+		Ruminus r = new Ruminus("ruminus", 20, 20, 20, 20);
 		Scanner s = new Scanner(System.in);
-		
+		Random rand = new Random();
+
 		int cho = 0;
 		int i = 0;
-		String sub[] = new String[5];
-		
-		sub[0]="ë¦¬ë¶€íŠ¸";
-		sub[1]="ìŠ¤ì¹´ë‹ˆì•„";
-		sub[2]="ë£¨ë‚˜";
-		sub[3]="ì œë‹ˆìŠ¤";
-		sub[4]="ë² ë¼";
+		String chname = "";
+		String sub[] = { "¸®ºÎÆ®", "½ºÄ«´Ï¾Æ", "·ç³ª", "Á¦´Ï½º", "º£¶ó" };
+
 		cho = s.nextInt();
-		
-		
-		
-		if(cho==0) {
-		System.out.println(sub[4]+" "+sub[0]+" "+sub[1]);
+
+		if (cho == 0) {
+			System.out.println(sub[4] + " " + sub[0] + " " + sub[1]);
+		} else if (cho == 4) {
+			System.out.println(sub[3] + " " + sub[4] + " " + sub[0]);
+		} else {
+			System.out.println(sub[cho - 1] + " " + sub[cho] + " " + sub[cho + 1]);
 		}
-		else if(cho==4) {
-		System.out.println(sub[3]+" "+sub[4]+" "+sub[0]);
-		}
-		else {
-		System.out.println(sub[cho-1]+" "+sub[cho]+" "+sub[cho+1]);
-		}
-		for(;;) {
-			System.out.println("ë‹¤ìŒìœ¼ë¡œ ë„˜ê¸° ì‹œê² ìŠµë‹ˆê¹Œ?");
+		// Ã³À½ ¼­¹ö ³ª¿­ ÄÚµå
+		for (;;) {
+			System.out.println("ÀÌÀü(1)/´ÙÀ½(2)À¸·Î ³Ñ±â ½Ã°Ú½À´Ï±î? Á¾·á(3)");
 			i = s.nextInt();
-		if(i==1) {
-			cho = cho + 1;
-			if(cho>4) cho=0;
-			if(cho==0) {
-				System.out.println(sub[4]+" "+sub[0]+" "+sub[1]);
+			if (i == 1) {
+
+				if (cho == 0) {
+					cho = 4;
+				} else {
+					cho = cho - 1;
 				}
-				else if(cho==4) {
-				System.out.println(sub[3]+" "+sub[4]+" "+sub[0]);
+
+				if (cho == 0) {
+					System.out.println(sub[4] + " " + sub[0] + " " + sub[1]);
+				} else if (cho == 4) {
+					System.out.println(sub[3] + " " + sub[4] + " " + sub[0]);
+				} else {
+					System.out.println(sub[cho - 1] + " " + sub[cho] + " " + sub[cho + 1]);
 				}
-				else {
-				System.out.println(sub[cho-1]+" "+sub[cho]+" "+sub[cho+1]);
+			}
+			// ÀÌÀüÄÚµå
+			if (i == 2) {
+				if (cho == 4) {
+					cho = 0;
+				} else {
+					cho = cho + 1;
 				}
+
+				if (cho == 0) {
+					System.out.println(sub[4] + " " + sub[0] + " " + sub[1]);
+				} else if (cho == 4) {
+					System.out.println(sub[3] + " " + sub[4] + " " + sub[0]);
+				} else {
+					System.out.println(sub[cho - 1] + " " + sub[cho] + " " + sub[cho + 1]);
+				}
+			}
+			// ´ÙÀ½ÄÚµå
+			if (i == 3) {
+				break;
+			}
 		}
-		if(i==2) {
-			
-			break;
+		if (cho == 0) {
+			System.out.println(sub[4] + " " + sub[0] + " " + sub[1] + " ÀÌÁß¿¡ °í¸£½Ã¿À (1/2/3)");
+		} else if (cho == 4) {
+			System.out.println(sub[3] + " " + sub[4] + " " + sub[0] + " ÀÌÁß¿¡ °í¸£½Ã¿À (1/2/3)");
+		} else {
+			System.out.println(sub[cho - 1] + " " + sub[cho] + " " + sub[cho + 1] + " ÀÌÁß¿¡ °í¸£½Ã¿À (1/2/3)");
 		}
+		i = s.nextInt();
+
+		if (i == 1) {
+			if (cho == 0)
+				chname = sub[4];
+			else
+				chname = sub[cho - 1];
+		} else if (i == 2) {
+			chname = sub[cho];
+		} else if (i == 3) {
+			if (cho == 4)
+				chname = sub[0];
+			else
+				chname = sub[cho + 1];
 		}
-		for(;;) {
-		u.move();
+
+		System.out.println(chname + " ¼­¹ö¿¡ µé¾î°©´Ï´Ù.");
+		System.out.println("1~5¹ø Áß µé¾î°¥ Ã¤³ÎÀ» °í¸£¼¼¿ä.");
+		i = s.nextInt();
+
+		if (i > 5) {
+			System.out.println("´Ù½Ã ÀÔ·ÂÇØÁÖ¼¼¿ä");
+		} else {
+			System.out.println(chname + " ¼­¹ö " + i + "Ã¤³Î¿¡ ÀÔÀåÇÕ´Ï´Ù.");
 		}
+
 		
+
+		String ans = "";
+		int count = 0;
+		int pas = 0;
+		String pas2[] = { "¸ÞÀÌÇÃ", "½ºÅä¸®", "¾È³çÇÏ¼¼¿ä", "ÀßÀÖ¾î¿ä", "´Ù½Ã ¸¸³ª¿ä" };
+		int roll = 0;
+		String ans2 = "";
+		for (;;) {
+			System.out.println("Ä³¸¯ÅÍ¸¦ »ý¼ºÇÏ½Ã°Ú½À´Ï±î? (y/n)");
+			ans = s.next();
+			if (ans.equals("y")) {
+				if (count > 3) {
+					System.out.println("´õÀÌ»ó Ä³¸¯ÅÍ¸¦ ¸¸µé ¼ö ¾ø½À´Ï´Ù.");
+					break;
+				} else {
+					System.out.println("Ä³¸¯ÅÍ¸¦ »ý¼ºÇÕ´Ï´Ù. 2Â÷ ºñ¹Ð ¹øÈ£¸¦ ÀÔ·ÂÇØ ÁÖ¼¼¿ä");
+					pas = s.nextInt();
+					count++;
+					if (pas == 1234) {
+						roll = rand.nextInt(pas2.length);
+						System.out.println("º¸¾È ¹®ÀÚ¸¦ ÀÔ·ÂÇØ ÁÖ¼¼¿ä." + "º¸¾È¹®ÀÚ´Â :" + pas2[roll] + " ÀÔ´Ï´Ù.");
+						ans2 = s.next();
+						if (pas2[roll].equals(ans2)) {
+							System.out.println("Ä³¸¯ÅÍ¸¦ °í¸£¼¼¿ä");
+						} else {
+							System.out.println("º¸¾È ¹®ÀÚ ÀÔ·Â¿¡ ½ÇÆÐÇÏ¼Ë½À´Ï´Ù. Ã³À½À¸·Î µ¹¾Æ°©´Ï´Ù.");
+							continue;
+						}
+						
+					}
+					else {
+						System.out.println("2Â÷ ºñ¹Ð¹øÈ£ ÀÔ·Â¿¡ ½ÇÆÐ Çß½À´Ï´Ù. ´Ù½Ã Ã³À½À¸·Î µ¹¾Æ°©´Ï´Ù");
+					}
+				}
+
+			} else if (ans.equals("n")) {
+				System.out.println("Ä³¸¯ÅÍ¸¦ ¸¸µéÁö ¾Ê½À´Ï´Ù.");
+				break;
+			} else
+				System.out.println("¿À·ùÀÔ´Ï´Ù ´Ù½Ã ÇØÁÖ½Ê½Ã¿À");
+			continue;
 		}
+		/*
+		 * if (i == 1) { System.out.println(sub[cho - 1] + " ¼­¹ö¿¡ µé¾î°©´Ï´Ù.");
+		 * System.out.println("1~5¹ø Áß µé¾î°¥ Ã¤³ÎÀ» °í¸£¼¼¿ä."); i = s.nextInt();
+		 * 
+		 * if (i == 1) { System.out.println(sub[cho - 1] + " 1Ã¤³Î¿¡ µé¾î°©´Ï´Ù."); } else if (i
+		 * == 2) { System.out.println(sub[cho - 1] + " 2Ã¤³Î¿¡ µé¾î°©´Ï´Ù."); } else if (i == 3)
+		 * { System.out.println(sub[cho - 1] + " 3Ã¤³Î¿¡ µé¾î°©´Ï´Ù."); } else if (i == 4) {
+		 * System.out.println(sub[cho - 1] + " 4Ã¤³Î¿¡ µé¾î°©´Ï´Ù."); } else if (i == 5) {
+		 * System.out.println(sub[cho - 1] + " 5Ã¤³Î¿¡ µé¾î°©´Ï´Ù."); } } else if (i == 2) {
+		 * System.out.println(sub[cho] + " ¼­¹ö¿¡ µé¾î°©´Ï´Ù.");
+		 * System.out.println("1~5¹ø Áß µé¾î°¥ Ã¤³ÎÀ» °í¸£¼¼¿ä."); i = s.nextInt();
+		 * 
+		 * if (i == 1) { System.out.println(sub[cho] + " 1Ã¤³Î¿¡ µé¾î°©´Ï´Ù."); } else if (i ==
+		 * 2) { System.out.println(sub[cho] + " 2Ã¤³Î¿¡ µé¾î°©´Ï´Ù."); } else if (i == 3) {
+		 * System.out.println(sub[cho] + " 3Ã¤³Î¿¡ µé¾î°©´Ï´Ù."); } else if (i == 4) {
+		 * System.out.println(sub[cho] + " 4Ã¤³Î¿¡ µé¾î°©´Ï´Ù."); } else if (i == 5) {
+		 * System.out.println(sub[cho] + " 5Ã¤³Î¿¡ µé¾î°©´Ï´Ù."); } } else if (i == 3) {
+		 * System.out.println(sub[cho + 1] + " ¼­¹ö¿¡ µé¾î°©´Ï´Ù.");
+		 * System.out.println("1~5¹ø Áß µé¾î°¥ Ã¤³ÎÀ» °í¸£¼¼¿ä."); i = s.nextInt();
+		 * 
+		 * if (i == 1) { System.out.println(sub[cho + 1] + " 1Ã¤³Î¿¡ µé¾î°©´Ï´Ù."); } else if (i
+		 * == 2) { System.out.println(sub[cho + 1] + " 2Ã¤³Î¿¡ µé¾î°©´Ï´Ù."); } else if (i == 3)
+		 * { System.out.println(sub[cho + 1] + " 3Ã¤³Î¿¡ µé¾î°©´Ï´Ù."); } else if (i == 4) {
+		 * System.out.println(sub[cho + 1] + " 4Ã¤³Î¿¡ µé¾î°©´Ï´Ù."); } else if (i == 5) {
+		 * System.out.println(sub[cho + 1] + " 5Ã¤³Î¿¡ µé¾î°©´Ï´Ù."); } }½ÇÆÐÀÛ
+		 */
+
+	}
 
 }
