@@ -1,0 +1,1 @@
+randombox vector 클래스 사용해서 다시 짜보기
